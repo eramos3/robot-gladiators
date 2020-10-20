@@ -125,19 +125,9 @@ var endGame = function() {
     } else {
       window.alert("Thank you for playing Robot Gladiators! Come back soon!");
     }
-   
   } else {
     window.alert("You have lost your robot in battle.");
   }
-  
-  var playAgainConfirm = window.confirm("Would you like to play again?");
-
-  if(playAgainConfirm) {
-    startGame();
-  } else {
-    window.alert("Thank you for playing Robot Gladiators! Come back soon!");
-  }
-
 };
 
 var shop = function() {

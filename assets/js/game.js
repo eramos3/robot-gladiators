@@ -20,7 +20,7 @@ var fight = function(enemy) {
     }
 
     // remove enemy's health by subtracting the amount set in the playerInfo.attack variable
-    enemy.health = Math.max(0, enemy.health - playerInfo.attack);;
+    enemy.health = Math.max(0, enemy.health - playerInfo.attack);
     console.log(
       playerInfo.name + ' attacked ' + enemy.name + '. ' + enemy.name + ' now has ' + enemy.health + ' health remaining.'
     );
@@ -70,6 +70,7 @@ var startGame = function() {
     if (playerInfo.health > 0) {
       // let user know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
       window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+      // debugger;
 
       // pick new enemy to fight based on the index of the enemyInfo array
       var pickedEnemyObj = enemyInfo[i];
@@ -82,24 +83,25 @@ var startGame = function() {
       // debugger;
 
       // pass the fight(pickedEnemyObj); variable's value into the fight function, where it will assume the value of the enemy.name parameter
-      fight(pickedEnemyObj);      // if we're not at the last enemy in the array
+      fight(pickedEnemyObj);      
+      // if we're not at the last enemy in the array
       if (playerInfo.health > 0 && i < enemyInfo.length - 1) {
         // ask if player wants to use the store before next round
         var storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
       
-        // if yes, take them to the store() function
+        // if yes, take them to the shop() function
         if (storeConfirm) {
+          console.log("entered the shop");
           shop();
         }
-      } 
-      else {
+      } else {
         window.alert("You have lost your robot in battle! Game Over!");
         break;
       }
     }
-    // after the loop ends, player is either out of health or enemies to fight, so run the endGame function
-    endGame();
   }
+   // after the loop ends, player is either out of health or enemies to fight, so run the endGame function
+  endGame();
 }
 
 // function to end the entire game
@@ -120,14 +122,12 @@ var endGame = function() {
   }  else {
     window.alert("Thank you for playing Robot Gladiators! Come back soon!");
   }
- 
 }
 
 var shop = function() {
   var shopOptionPrompt = window.prompt(
     "Would you like REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 1 for REFILL, 2 for UPGRAGE, or 3 for LEAVE to make a choice."
   );
-  console.log("entered the shop");
   // use switch to carry out action
   switch (shopOptionPrompt) {
     case "refill":
@@ -170,8 +170,21 @@ var shop = function() {
   }
 };
 
+// function to set name
+var getPlayerName = function() {
+  var name = "";
+  // ***************************************
+  // ADD LOOP HERE WITH PROMPT AND CONDITION
+  // ***************************************
+  while (name === "" || name === null) {
+    name = prompt("What is your robot's name?");
+  };
+  console.log("Your robot's name is " + name);
+  return name;
+}
+
 var playerInfo = {
-  name: window.prompt("What is your robot's name?"),
+  name: getPlayerName(),
   health: 100,
   attack: 10,
   money: 10,
